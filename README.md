@@ -14,3 +14,7 @@ npm install -g yarn
 To know its version / To check for successful installation ,type in cmd the following
 
 > yarn --version
+
+> Contributor 2 (Abr)
+> Full Stack food delivery application using react.js
+> This is the thumbnail [./snap.png]
