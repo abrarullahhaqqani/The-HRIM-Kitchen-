@@ -4,7 +4,8 @@ import { LoginInput } from "../components";
 import { FaEnvelope, FaLock, FcGoogle } from "../assets/icons";
 import { motion } from "framer-motion";
 import { buttonClick } from "../animations";
-
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { app } from "../config/firebase.config.js";
 //for method 1
 // export const Login = () => {
 //   return (
@@ -18,6 +19,20 @@ const Login = () => {
   const [isSignUp, setisSignUp] = useState(false);
   const [password, setpassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
+  const firebaseAuth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  const loginWithGoogle = async () => {
+    await signInWithPopup(firebaseAuth, provider).then((userCred) => {
+      firebaseAuth.onAuthStateChanged((cred) => {
+        if (cred) {
+          cred.getIdToken().then((token) => {
+            console.log(token);
+          });
+        }
+      });
+    });
+  };
 
   return (
     <div className="w-screen h-screen relative overflow-hidden flex">
@@ -126,6 +141,7 @@ const Login = () => {
         <motion.div
           {...buttonClick}
           className="flex items-center justify-between px-28 py-2 gap-4 bg-lightOverlay backdrop:blur-sm cursor-pointer rounded-3xl hover:bg-gray-200 transition-all duration-150"
+          onClick={loginWithGoogle}
         >
           <FcGoogle className="text-3xl" />
           <p className="font-semibold capitalize text-base text-headingColor">
