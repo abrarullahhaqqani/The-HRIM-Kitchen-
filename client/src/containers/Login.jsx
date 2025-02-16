@@ -75,7 +75,18 @@ const Login = () => {
       }
     }
   };
+  // actions
 
+
+  // reducer
+
+  /// store globalised 
+  //// stores all details in the store
+  
+  /// dispatch and action 
+  
+
+  /// 
   const signInWithEmailPass = async () => {
     if (userEmail !== "" && password !== "") {
       await signInWithEmailAndPassword(firebaseAuth, userEmail, password).then(
