@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { buttonClick } from "../animations";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { app } from "../config/firebase.config.js";
+
 //for method 1
 // export const Login = () => {
 //   return (
