@@ -6,11 +6,13 @@ router.get("/", (req, res) => {
 });
 
 router.get("/jwtVerification", async (req, res) => {
+  // res.send("Jwt verification");
   if (!req.headers.authorization) {
     return res.status(500).send({ msg: "Token Not Found" });
   }
 
   const token = req.headers.authorization.split(" ")[1];
+  // return res.status(200).send({ token: token });
   try {
     const decodedValue = await admin.auth().verifyIdToken(token);
     if (!decodedValue) {
