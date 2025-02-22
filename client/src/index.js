@@ -4,14 +4,11 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-// import reportWebVitals from './reportWebVitals';
-import {createStore} from "redux";  
-import { Provider  } from "react-redux";
+// import reportWebVitals from "./reportWebVitals";
+// import { createStore } from "redux";
+// import { Provider  } from "react-redux";
 
-
-const myStore=createStore(myReducers);
-
-
+// const myStore=createStore(myReducers);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

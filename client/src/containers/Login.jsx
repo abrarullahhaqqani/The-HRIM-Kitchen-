@@ -12,8 +12,8 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { app } from "../config/firebase.config.js";
-import { validateUserJWTToken } from "../api/index.js";
+import { app } from "../config/firebase.config";
+import { validateUserJWTToken } from "../api";
 
 //for method 1
 // export const Login = () => {
@@ -37,6 +37,8 @@ const Login = () => {
       firebaseAuth.onAuthStateChanged((cred) => {
         if (cred) {
           cred.getIdToken().then((token) => {
+            console.log(token);
+
             validateUserJWTToken(token).then((data) => {
               console.log(data);
             });
@@ -77,16 +79,14 @@ const Login = () => {
   };
   // actions
 
-
   // reducer
 
-  /// store globalised 
+  /// store globalised
   //// stores all details in the store
-  
-  /// dispatch and action 
-  
 
-  /// 
+  /// dispatch and action
+
+  ///
   const signInWithEmailPass = async () => {
     if (userEmail !== "" && password !== "") {
       await signInWithEmailAndPassword(firebaseAuth, userEmail, password).then(
