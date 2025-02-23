@@ -38,7 +38,6 @@ const Login = () => {
         if (cred) {
           cred.getIdToken().then((token) => {
             console.log(token);
-
             validateUserJWTToken(token).then((data) => {
               console.log(data);
             });
