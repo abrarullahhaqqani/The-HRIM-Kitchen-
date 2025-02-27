@@ -31,13 +31,13 @@ const dispatch=useDispatch();
   return (
     //tailwind css styling classes added below
     <div className="w-screen min-h-screen h-auto flex flex-col items-center justify-center">
-      {/* this is the syntax of a JSX comment */}
+      {/* this is the syntax of a JSX comment,lets see  */}
 
       {/*
     The Routes component wraps all the route definitions. 
     The Route defines a route that matches the given path and renders the component given as element.
     */}
-
+    
       <Routes>
         <Route path="/*" element={<Main />} />
         <Route path="/Login" element={<Login />} />
