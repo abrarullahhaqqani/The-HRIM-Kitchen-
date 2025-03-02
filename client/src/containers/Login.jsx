@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LoginBg, Logo } from "../assets";
 import { LoginInput } from "../components";
 import { FaEnvelope, FaLock, FcGoogle } from "../assets/icons";
@@ -14,7 +14,8 @@ import {
 } from "firebase/auth";
 import { app } from "../config/firebase.config";
 import { validateUserJWTToken } from "../api";
-
+import { useDispatch, useSelector } from "react-redux";
+import { setUserDetails } from "../context/actions/userActions";
 //for method 1
 // export const Login = () => {
 //   return (
@@ -32,6 +33,15 @@ const Login = () => {
   const provider = new GoogleAuthProvider();
 
   const navigate = useNavigate();
+  const dispatch=useDispatch();
+  const user=useSelector((state)=>state.user); 
+  useEffect(()=>{ 
+     if(user){
+       navigate("/",{replace:true});
+     }
+  },[user])
+
+
   const loginWithGoogle = async () => {
     await signInWithPopup(firebaseAuth, provider).then((userCred) => {
       firebaseAuth.onAuthStateChanged((cred) => {
@@ -39,7 +49,7 @@ const Login = () => {
           cred.getIdToken().then((token) => {
             console.log(token);
             validateUserJWTToken(token).then((data) => {
-              console.log(data);
+              dispatch(setUserDetails(data));
             });
             navigate("/", { replace: true });
           });
@@ -63,7 +73,7 @@ const Login = () => {
             if (cred) {
               cred.getIdToken().then((token) => {
                 validateUserJWTToken(token).then((data) => {
-                  console.log(data);
+                  dispatch(setUserDetails(data));
                 });
                 navigate("/", { replace: true });
               });
@@ -94,7 +104,7 @@ const Login = () => {
             if (cred) {
               cred.getIdToken().then((token) => {
                 validateUserJWTToken(token).then((data) => {
-                  console.log(data);
+                  dispatch(setUserDetails(data));
                 });
                 navigate("/", { replace: true });
               });
