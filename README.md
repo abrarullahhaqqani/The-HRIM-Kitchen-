@@ -22,7 +22,7 @@ Full Stack food delivery application using react.js
 This is the thumbnail ![Image alt](https://github.com/abrarullahhaqqani/The-HRIM-Kitchen-/blob/main/snap.png?raw=true)
 
 Contributor 3 (IAK) 
-Add redux dependencies to client 
+Add redux dependencies to client and Install Redux dev tools chrome Extension 
 > > yarn add redux react-redux
-Install Redux dev tools chrome Extension 
+
 
