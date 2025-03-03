@@ -8,7 +8,7 @@ import { validateUserJWTToken } from "./api";
 import { setUserDetails } from "./context/actions/userActions";
 import { motion } from "framer-motion";
 import { FadeInOut } from "./animations";
-import { MainLoader } from "./components";
+import { Alert, MainLoader } from "./components";
 
 
 const App = () => { 
@@ -57,6 +57,8 @@ const App = () => {
         <Route path="/*" element={<Main />} />
         <Route path="/Login" element={<Login />} />
       </Routes>
+      <Alert type={"danger"} message={"Hi there"} />
+
     </div>
   );
 };
