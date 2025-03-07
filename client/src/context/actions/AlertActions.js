@@ -32,6 +32,6 @@ export const alertInfo=(message) =>{
 };
 export const alertNULL=(message) =>{ 
     return { type: 'SET_ALERT_NULL', 
-             alert:NULL 
+             alert:"NULL"   
      };
 };

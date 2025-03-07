@@ -16,6 +16,7 @@ import { app } from "../config/firebase.config";
 import { validateUserJWTToken } from "../api";
 import { useDispatch, useSelector } from "react-redux";
 import { setUserDetails } from "../context/actions/userActions";
+import { alertSuccess,alertInfo,alertWarning } from "../context/actions/AlertActions";
 //for method 1
 // export const Login = () => {
 //   return (
@@ -35,6 +36,8 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch=useDispatch();
   const user=useSelector((state)=>state.user); 
+  const alert=useSelector((state)=>state.user); 
+  
   useEffect(()=>{ 
      if(user){
        navigate("/",{replace:true});
@@ -58,7 +61,8 @@ const Login = () => {
     });
   };
   const signUpWithEmailPass = async () => {
-    if (userEmail === "" || password === "" || confirmPassword === "") {
+    if (userEmail === "" || password === "" || confirmPassword === "") { 
+      dispatch(alertInfo("Please fill all the fields"));
     } else {
       if (password === confirmPassword) {
         setUserEmail("");
@@ -82,7 +86,7 @@ const Login = () => {
         });
         // console.log("Equal");
       } else {
-        // alert message
+        dispatch(alertWarning("Passwords do not match"));
       }
     }
   };
@@ -113,7 +117,7 @@ const Login = () => {
         }
       );
     } else {
-      //alert message
+      dispatch(alertWarning("Passwords do not match"));
     }
   };
   return (
