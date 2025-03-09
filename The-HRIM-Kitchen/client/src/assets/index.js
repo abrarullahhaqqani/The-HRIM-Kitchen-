@@ -1,8 +1,0 @@
-export { default as LoginBg } from './imgs/loginBg.jpg'
-export { default as Avatar } from './imgs/avatar.png'
-export { default as Bill } from './imgs/bill.jpg'
-export { default as Delivery } from './imgs/delivery.png'
-export { default as HeroBg } from './imgs/heroBg.png'
-export { default as Logo } from './imgs/logo.png'
-export { default as Mango } from './imgs/mango.png'
-export { default as Biryani } from './imgs/biryani.jpg'
