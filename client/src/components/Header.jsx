@@ -14,7 +14,7 @@ const Header = () => {
   const user=useSelector(state=>state.user); 
   const firebaseAuth=getAuth(app); 
   const navigate=useNavigate(); 
-  const dispatch=useDispatch(); 
+  const dispatch=useDispatch();  
 
   const SignOut=()=>{ 
     console.log("hello"); 
