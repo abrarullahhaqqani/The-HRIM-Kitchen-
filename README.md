@@ -25,7 +25,11 @@ Contributor 3 (IAK)
 Add redux dependencies to client and Install Redux dev tools chrome Extension 
 > > yarn add redux react-redux
 > >
-> >  Contributor 4(SRR)
+> >
+> >
+
+
+Contributor 4(SRR)
 > >For customizing and styling scrollbars in your Tailwind CSS project.
 > > Run: yarn add tailwind-scrollbar
 Then, add the plugin in tailwind.config.js.
