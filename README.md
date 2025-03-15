@@ -24,23 +24,17 @@ This is the thumbnail ![Image alt](https://github.com/abrarullahhaqqani/The-HRIM
 Contributor 3 (IAK) 
 Add redux dependencies to client and Install Redux dev tools chrome Extension 
 > > yarn add redux react-redux
-> >
-> >
-> >
 
 
 Contributor 4(SRR)
 > >For customizing and styling scrollbars in your Tailwind CSS project.
 > > Run: yarn add tailwind-scrollbar
-Then, add the plugin in
-tailwind.config.js.
-> > For Material Tables which is required in this project from material-table.com
-> > Run these  commands
-
- yarn add material-table
- yarn add @material-ui/core
- yarn add @material-ui/icons
+> >Then, add the plugin in
+> >tailwind.config.js.
+> > For Material Tables which is required in this project from material-table.com Run these  commands
+> > yarn add material-table
+> >yarn add @material-ui/core
+> >yarn add @material-ui/icons
 > > These commands install Material Table, Material-UI components, and Material-UI icons for table styling and functionality in React.
-> > 
 
 
