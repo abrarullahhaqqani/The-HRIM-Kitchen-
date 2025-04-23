@@ -18,9 +18,12 @@ import {
 } from "../context/actions/AlertActions";
 import { motion } from "framer-motion";
 import { buttonClick } from "../animations";
+import { addNewProduct,getAllProducts } from "../api";
+import { setAllProducts } from "../context/actions/productActions"; 
+
 
 const DbNewItem = () => {
-  const [itemName, setItem] = useState("");
+  const [itemName, setItemName] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -79,15 +82,29 @@ const DbNewItem = () => {
       }, 3000);
     });
   };
-
+    
   const submitNewData = () => {
     const data = {
       product_name: itemName,
       product_category: category,
       product_price: price,
       imageURL: imageDownloadURL,
-    };
-    console.log(data);
+    };  
+    console.log("from submit new data ", data);
+    addNewProduct(data).then(res=>{ 
+      console.log(res); 
+      dispatch(alertSuccess('New Product Added Successfully'))  
+      setTimeout(()=>{ 
+        dispatch(alertNULL()); 
+      },3000)
+      setImageDownloadURL(null);  ////// 
+      setItemName('');  /// doubt here 
+      setPrice(''); 
+      setCategory(null);
+    }) 
+    getAllProducts().then(data=>{ 
+      dispatch(setAllProducts(data)); 
+    }); 
   };
 
   return (
@@ -97,7 +114,7 @@ const DbNewItem = () => {
         <InputValueField
           type="text"
           placeholder="Item name here"
-          stateFunction={setItem}
+          stateFunction={setItemName}
           stateValue={itemName}
         />
 
@@ -199,8 +216,8 @@ const DbNewItem = () => {
         <motion.button
           onClick={submitNewData}
           {...buttonClick}
-          className="w9/12 py-2 rounded-md bg-red-400 text-primary hover:bg-red-500 cursor-pointer"
-        ></motion.button>
+          className="w-9/12 py-2 rounded-md bg-red-400 text-primary hover:bg-red-500 cursor-pointer"
+        > Save </motion.button>
       </div>
     </div>
   );

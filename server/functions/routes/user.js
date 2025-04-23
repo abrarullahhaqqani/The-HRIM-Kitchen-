@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const admin = require("firebase-admin");
-
+let data=[];
 router.get("/", (req, res) => {
   return res.send("Inside the user router ");
 });
@@ -28,4 +28,37 @@ router.get("/jwtVerification", async (req, res) => {
     });
   }
 });
+
+const listALlUsers= async (nextpagetoken)=>{ 
+   admin
+     .auth() 
+     .listUsers(1000,nextpagetoken)
+     .then((listuserresult)=>{ 
+       listuserresult.users.forEach((rec)=>{ 
+          data.push(rec.toJSON()); 
+       }
+       ); 
+       if(listuserresult.pageToken){ 
+         listAllUsers(listuserresult.pageToken); 
+       }
+     
+      })
+      .catch((err)=> console.log(err));
+}; 
+listALlUsers(); 
+ 
+router.get("/all",async (req,res)=>{ 
+    listALlUsers(); 
+    try{ 
+      return res.status(200).send({ 
+        success:true, 
+        data:data,
+        dataCount, 
+      })
+    } 
+    catch(err){ 
+      return res.send({ success:false, msg: 'Error : ${err} ' });
+    }
+});
+
 module.exports = router;

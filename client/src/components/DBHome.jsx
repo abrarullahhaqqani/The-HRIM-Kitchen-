@@ -1,6 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProducts } from "../api";
+import { setAllProducts } from "../context/actions/productActions";
+const DBHome = () => { 
+  const products=useSelector((state)=>state.products); 
+  const dispatch=useDispatch(); 
 
-const DBHome = () => {
+  useEffect(()=>{ 
+    if(!products){ 
+      getAllProducts().then((data)=>{  
+        console.log(data); 
+        dispatch(setAllProducts(data)); 
+      }); 
+    }
+  },[]);  
+
   return <div>DBHome</div>;
 };
 

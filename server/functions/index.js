@@ -5,7 +5,7 @@ require("dotenv").config();
 const serviceAccountKey = require("./serviceAccountKey.json");
 
 const express = require("express");
-const app = express();
+const app = express(); 
 
 //Body parser for out JSON data
 app.use(express.json());
@@ -30,4 +30,10 @@ app.get("/", (req, res) => {
 
 const userRoute = require("./routes/user");
 app.use("/api/users", userRoute);
-exports.app = functions.https.onRequest(app);
+
+const productRoute = require("./routes/products");
+app.use("/api/products", productRoute);
+
+ 
+exports.app = functions.https.onRequest(app); 
+  
