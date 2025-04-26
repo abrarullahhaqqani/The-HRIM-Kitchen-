@@ -5,7 +5,7 @@ export const setAllUserDetails=(data)=>{
    };
 }; 
 
-export const getAllUserDetails=()=>{ 
+export const getAllUserDetails=(data)=>{ 
     return { 
       type:"GET_ALL_USER", 
     };

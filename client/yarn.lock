@@ -1165,6 +1165,27 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@coreui/chartjs@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@coreui/chartjs/-/chartjs-4.0.0.tgz#e8e720a05a74e454e47e2ef34848868123181a01"
+  integrity sha512-gPxmqj6hpC/erZBfyKQ+axWKr1gY4yhj8Dm3WkBp8SG2lUs0lEAQy3XGmmM/42TBTylbq5V4P6jfqim3N0mKmw==
+  dependencies:
+    "@coreui/coreui" "^5.0.0"
+    chart.js "^4.4.2"
+
+"@coreui/coreui@^5.0.0":
+  version "5.3.2"
+  resolved "https://registry.yarnpkg.com/@coreui/coreui/-/coreui-5.3.2.tgz#4d1f726770a23028bf3bc8983714ed960657ea7f"
+  integrity sha512-H7im75tSw6uKhH4ew2w0o3WNMHRRQ50XKMhSICNuK6hSvEHP1S2L4dngX9ZvsTj90eJiy9ZFTzwvORLLk+IkTg==
+
+"@coreui/react-chartjs@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@coreui/react-chartjs/-/react-chartjs-3.0.0.tgz#f2655df6575076dfb614e15ba686d5c2c49ab86c"
+  integrity sha512-65FAxHHwfMp3HY2yej7a0sLgkQJ49v9oPisuwvShrHOo0cuFVaUGKSa1V+M13W/oKsS6AWEFUooAZdsz/WZrAg==
+  dependencies:
+    "@coreui/chartjs" "^4.0.0"
+    chart.js "^4.4.2"
+
 "@csstools/normalize.css@*":
   version "12.1.1"
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-12.1.1.tgz#f0ad221b7280f3fc814689786fd9ee092776ef8f"
@@ -2201,6 +2222,11 @@
   dependencies:
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
+
+"@kurkle/color@^0.3.0":
+  version "0.3.4"
+  resolved "https://registry.yarnpkg.com/@kurkle/color/-/color-0.3.4.tgz#4d4ff677e1609214fc71c580125ddddd86abcabf"
+  integrity sha512-M5UknZPHRu3DEDWoipU6sE8PdkZ6Z/S+v4dD+Ke8IaNlpdSQah50lz1KtcFBa2vsdOnwbbnxJwVM4wty6udA5w==
 
 "@leichtgewicht/ip-codec@^2.0.1":
   version "2.0.5"
@@ -4171,6 +4197,13 @@ char-regex@^2.0.0:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/char-regex/-/char-regex-2.0.2.tgz#81385bb071af4df774bff8721d0ca15ef29ea0bb"
   integrity sha512-cbGOjAptfM2LVmWhwRFHEKTPkLwNddVmuqYZQt895yXwAsWsXObCG+YN4DGQ/JBtT4GP1a1lPPdio2z413LmTg==
+
+chart.js@^4.4.2:
+  version "4.4.9"
+  resolved "https://registry.yarnpkg.com/chart.js/-/chart.js-4.4.9.tgz#602e2fc2462f0f7bb7b255eaa1b51f56a43a1362"
+  integrity sha512-EyZ9wWKgpAU0fLJ43YAEIF8sr5F2W3LqbS40ZJyHIner2lY14ufqv2VMp69MAiZ2rpwxEUxEhIH/0U3xyRynxg==
+  dependencies:
+    "@kurkle/color" "^0.3.0"
 
 check-types@^11.2.3:
   version "11.2.3"

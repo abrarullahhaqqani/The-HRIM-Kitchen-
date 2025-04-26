@@ -1,14 +1,14 @@
-const allUserReducer =(state=[],action)=>{ 
+const allUserReducer =(state=null,action)=>{ 
    switch(action.type){ 
        case "GET_ALL_USER":
           return state; 
 
        case "SET_ALL_USER":
-           return action.allUsers;
+          return action.allUsers;
 
        default: 
         return state; 
    }
-};
+}; 
 
 export default allUserReducer;

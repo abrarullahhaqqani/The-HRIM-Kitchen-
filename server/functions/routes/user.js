@@ -29,36 +29,35 @@ router.get("/jwtVerification", async (req, res) => {
   }
 });
 
-const listALlUsers= async (nextpagetoken)=>{ 
-   admin
-     .auth() 
-     .listUsers(1000,nextpagetoken)
-     .then((listuserresult)=>{ 
-       listuserresult.users.forEach((rec)=>{ 
-          data.push(rec.toJSON()); 
-       }
-       ); 
-       if(listuserresult.pageToken){ 
-         listAllUsers(listuserresult.pageToken); 
-       }
-     
-      })
-      .catch((err)=> console.log(err));
-}; 
-listALlUsers(); 
- 
-router.get("/all",async (req,res)=>{ 
-    listALlUsers(); 
-    try{ 
-      return res.status(200).send({ 
-        success:true, 
-        data:data,
-        dataCount, 
-      })
-    } 
-    catch(err){ 
-      return res.send({ success:false, msg: 'Error : ${err} ' });
-    }
+const listALlUsers = async (nextpagetoken) => {
+  admin
+    .auth()
+    .listUsers(1000, nextpagetoken)
+    .then((listuserresult) => {
+      listuserresult.users.forEach((rec) => {
+        data.push(rec.toJSON());
+      });
+      if (listuserresult.pageToken) {
+        listALlUsers(listuserresult.pageToken);
+      }
+    })
+    .catch((er) => console.log(er));
+};
+
+listALlUsers();
+
+router.get("/all", async (req, res) => {
+  listALlUsers();
+  try {
+    return res
+      .status(200)
+      .send({ success: true, data: data, dataCount: data.length });
+  } catch (er) {
+    return res.send({
+      success: false,
+      msg: `Error in listing users :,${er}`,
+    });
+  }
 });
 
 module.exports = router;

@@ -89,22 +89,21 @@ const DbNewItem = () => {
       product_category: category,
       product_price: price,
       imageURL: imageDownloadURL,
-    };  
-    console.log("from submit new data ", data);
-    addNewProduct(data).then(res=>{ 
-      console.log(res); 
-      dispatch(alertSuccess('New Product Added Successfully'))  
-      setTimeout(()=>{ 
-        dispatch(alertNULL()); 
-      },3000)
-      setImageDownloadURL(null);  ////// 
-      setItemName('');  /// doubt here 
-      setPrice(''); 
+    };
+    addNewProduct(data).then((res) => {
+      console.log(res);
+      dispatch(alertSuccess("New Item added"));
+      setTimeout(() => {
+        dispatch(alertNULL());
+      }, 3000);
+      setImageDownloadURL(null);
+      setItemName("");
+      setPrice("");
       setCategory(null);
-    }) 
-    getAllProducts().then(data=>{ 
-      dispatch(setAllProducts(data)); 
-    }); 
+    });
+    getAllProducts().then((data) => {
+      dispatch(setAllProducts(data));
+    });
   };
 
   return (
