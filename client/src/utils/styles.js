@@ -12,4 +12,48 @@ export const statuses = [
   { id: 5, title: "Curry", category: "curry" },
   { id: 6, title: "Chinese", category: "chinese" },
   { id: 7, title: "Bread", category: "bread" },
-];
+]; 
+export const randomData=[ 
+  { id:1,
+    imageURL:"https://firebasestorage.googleapis.com/v0/b/fooddeliveryapp2-b119b.firebasestorage.app/o/images%2F1745735335391_i1.png?alt=media&token=4aeca6ed-07d2-4f1e-b56a-6dd36674c44b",
+    product_name:"Icecream", 
+    product_category:"Chocolate & Vanilla",
+    product_price:"10.00",
+  } ,
+  {
+    id:2,
+    imageURL:"https://firebasestorage.googleapis.com/v0/b/fooddeliveryapp2-b119b.firebasestorage.app/o/images%2F1745735495026_f7.png?alt=media&token=3ae7a874-7a3f-4d8c-8fc7-d52008a72268",
+    product_name:"Straw Berries",
+    product_category:"Fruits",
+    product_price:"5.00",
+  }, 
+  {
+    id:3,
+    imageURL:"https://firebasestorage.googleapis.com/v0/b/fooddeliveryapp2-b119b.firebasestorage.app/o/images%2F1745735438756_f2.png?alt=media&token=22eadcc3-c995-4760-8965-3f15824baf74",
+    product_name:"Pine Apples",
+    product_category:"Juicy Apples",
+    product_price:"10",
+  },  
+  { 
+    id:4,
+    imageURL:"https://firebasestorage.googleapis.com/v0/b/fooddeliveryapp2-b119b.firebasestorage.app/o/images%2F1745735701173_c3.png?alt=media&token=80ef2413-b997-4abd-afe5-18acd62edee9",
+    product_name:"Chicken Kebab",
+    product_category:"Mixed Kebab plate",
+    product_price:"15",
+  },{ 
+    id:5,
+    imageURL:"https://firebasestorage.googleapis.com/v0/b/fooddeliveryapp2-b119b.firebasestorage.app/o/images%2F1745735135081_d4.png?alt=media&token=9e52ebdd-23bd-4f59-a7cb-e9df6ad517b5",
+    product_name:"Mojito",
+    product_category:"Cocktail Drinks",
+    product_price:"5",
+
+  },{
+    id:6,
+    imageURL:"https://firebasestorage.googleapis.com/v0/b/fooddeliveryapp2-b119b.firebasestorage.app/o/images%2F1745735752556_cu3.png?alt=media&token=e558e9cf-1218-4267-8c5e-5f7e160965d2",
+    product_name:"Prawns Masala",
+    product_category:"Spicy Masala",
+    product_price:"15",
+  }
+
+  
+]
