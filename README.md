@@ -44,5 +44,7 @@ Contributor 4(SRR)
 > yarn add @material-ui/icons
 
 >  These commands install Material Table, Material-UI components, and Material-UI icons for table styling and functionality in React.
-
+" Add this dependencies to client folder for some specialized UI options "
+> yarn add swiper
+> yarn add @coreui/react-chartjs
 
