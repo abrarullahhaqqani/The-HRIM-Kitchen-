@@ -4,11 +4,12 @@ import { app } from "./config/firebase.config";
 import { getAuth } from "firebase/auth";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { validateUserJWTToken } from "./api";
+import { getAllCartItems, validateUserJWTToken } from "./api";
 import { setUserDetails } from "./context/actions/userActions";
 import { motion } from "framer-motion";
 import { FadeInOut } from "./animations";
 import { Alert, MainLoader } from "./components";
+import { setCartItems } from "./context/actions/cartAction";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -22,7 +23,12 @@ const App = () => {
         cred.getIdToken().then((token) => {
           console.log(token);
           validateUserJWTToken(token).then((data) => {
-            console.log(data);
+            if(data){ 
+               getAllCartItems(data.user_id).then((items)=>{ 
+                 console.log(items); 
+                 dispatch(setCartItems(items)); 
+               }); 
+            }
             dispatch(setUserDetails(data));
           });
         });

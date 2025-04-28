@@ -22,7 +22,7 @@ export const randomData=[
   } ,
   {
     id:2,
-    imageURL:"https://firebasestorage.googleapis.com/v0/b/fooddeliveryapp2-b119b.firebasestorage.app/o/images%2F1745735495026_f7.png?alt=media&token=3ae7a874-7a3f-4d8c-8fc7-d52008a72268",
+    imageURL:"https://firebasestorage.googleapis.com/v0/b/fooddeliveryapp2-b119b.firebasestorage.app/o/images%2F1745847526541_f5.png?alt=media&token=b49c88c5-fbec-4b5b-af44-d7769a105179",
     product_name:"Straw Berries",
     product_category:"Fruits",
     product_price:"5.00",

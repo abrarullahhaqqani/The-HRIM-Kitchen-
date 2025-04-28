@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { FilterSection, Header, Home, HomeSLider } from '../components';
+import { Cart, FilterSection, Header, Home, HomeSLider } from '../components';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../api';
 import { setAllProducts } from '../context/actions/productActions';
@@ -14,6 +14,8 @@ import { setAllProducts } from '../context/actions/productActions';
 const Main = () => { 
   const products=useSelector((state)=>state.products); 
   const dispatch=useDispatch(); 
+  const isCart=useSelector((state)=>state.isCart); 
+   
   useEffect(()=>{ 
      if(!products){ 
       getAllProducts().then((data)=>{ 
@@ -28,7 +30,7 @@ const Main = () => {
       <HomeSLider/>
       <FilterSection/> 
      </div> 
-     
+     {isCart && <Cart/> }
   </main>
   
 }

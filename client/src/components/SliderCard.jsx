@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { addNewItemToCart, getAllCartItems } from '../api'
 import { useDispatch, useSelector } from 'react-redux' 
 import { alertNULL,alertSuccess } from "../context/actions/AlertActions";
+import { setCartItems } from '../context/actions/cartAction'
 const SliderCard = ({data,index}) => { 
     const user= useSelector((state)=>state.user);
     const dispatch=useDispatch(); 
@@ -12,7 +13,7 @@ const SliderCard = ({data,index}) => {
      addNewItemToCart(user?.user_id,data).then(res=>{ 
        dispatch(alertSuccess('Added to cart')); 
        getAllCartItems(user?.user_id).then((items)=>{ 
-        console.log(items); 
+         dispatch(setCartItems(items)); 
        });
        setInterval(()=>{ 
         dispatch(alertNULL()); 
