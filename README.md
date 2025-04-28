@@ -48,5 +48,6 @@ Contributor 4(SRR)
 
 Contributor 3 (IAK)
 > yarn add swiper
+
 > yarn add @coreui/react-chartjs
 
