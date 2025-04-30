@@ -14,12 +14,19 @@ export const SlideTop = {
   exit: { opacity: 0, y: 30 },
 };
 
-export const staggerFadeInOut=(i)=>{ 
+//Added this
+export const slideIn = {
+  initial: { opacity: 0, x: 30 },
+  animate: { opacity: 1, x: 0 },
+  exit: { opacity: 0, x: 30 }, //just changed y to x
+};
+
+export const staggerFadeInOut = (i) => {
   return {
-    intial:{ opacity:0,y:50},
-    animate:{opacity:1,y:0}, 
-    exit:{opacity:0,y:50 },
-    tansition:{ duration:0.3,delay:i*0.15 },
-    key:{i}, 
+    intial: { opacity: 0, y: 50 },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: 50 },
+    tansition: { duration: 0.3, delay: i * 0.15 },
+    key: { i },
   };
 };

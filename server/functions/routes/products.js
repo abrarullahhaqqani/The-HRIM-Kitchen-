@@ -56,81 +56,130 @@ router.delete("/delete/:productId", async (req, res) => {
       });
   } catch (err) {
     return res.send({ success: false, msg: `Error :${err}` });
-  } 
-}); 
+  }
+});
 /// new route for adding products to cart
- router.post("/addToCart/:userId", async (req,res)=>{ 
-   const userId=req.params.userId; ///extracting userid from params 
-   const productId=req.body.productId; /// see here once  /// extracting productId from body
-   try{ 
-     const doc= await db
-       .collection("cartItems")
-       .doc(`/${userId}/`)                 ///making cartitem collection with req specifications 
-       .collection("items") 
-       .doc(`/${productId}/`)
-       .get();  
+router.post("/addToCart/:userId", async (req, res) => {
+  const userId = req.params.userId; ///extracting userid from params
+  const productId = req.body.productId; /// see here once  /// extracting productId from body
+  try {
+    const doc = await db
+      .collection("cartItems")
+      .doc(`/${userId}/`) ///making cartitem collection with req specifications
+      .collection("items")
+      .doc(`/${productId}/`)
+      .get();
 
-       if(doc.data()){                         ///checking whether a product exists in cart or not 
-        const quantity=doc.data().quantity+1;   ///if exists just updating quantity and sending updated data
-        const updatedItem=await db
+    if (doc.data()) {
+      ///checking whether a product exists in cart or not
+      const quantity = doc.data().quantity + 1; ///if exists just updating quantity and sending updated data
+      const updatedItem = await db
+        .collection("cartItems")
+        .doc(`/${userId}/`)
+        .collection("items")
+        .doc(`/${productId}/`)
+        .update({ quantity });
+      return res.status(200).send({ success: true, data: updatedItem });
+    } else {
+      /// else creating a cart items and then adding to cart in database
+      ///i) creating
+      const data = {
+        productId: productId,
+        product_name: req.body.product_name,
+        product_category: req.body.product_category,
+        product_price: req.body.product_price,
+        imageURL: req.body.imageURL,
+        quantity: 1,
+      };
+      //// pushing to cart items database
+      const addItems = await db
+        .collection("cartItems")
+        .doc(`/${userId}/`)
+        .collection("items")
+        .doc(`/${productId}/`)
+        .set(data);
+      return res.status(200).send({ success: true, data: addItems });
+    }
+  } catch (err) {
+    return res.send({ success: false, msg: `Error :${err} ` });
+  }
+});
+
+// update cart to increase annd decrease the quantity
+router.post("/updateCart/:user_id", async (req, res) => {
+  const userId = req.params.user_id;
+  const productId = req.query.productId;
+  const type = req.query.type;
+
+  try {
+    const doc = await db
+      .collection("cartItems")
+      .doc(`/${userId}/`)
+      .collection("items")
+      .doc(`/${productId}/`)
+      .get();
+
+    if (doc.data()) {
+      if (type === "increment") {
+        const quantity = doc.data().quantity + 1;
+        const updatedItem = await db
           .collection("cartItems")
           .doc(`/${userId}/`)
           .collection("items")
           .doc(`/${productId}/`)
-          .update({quantity}); 
-          return res.status(200).send({success:true ,data:updatedItem }); 
-       }
-       else{ 
-         /// else creating a cart items and then adding to cart in database 
-         ///i) creating 
-         const data={ 
-          productId:productId,
-          product_name:req.body.product_name,
-          product_category:req.body.product_category,
-          product_price:req.body.product_price,
-          imageURL:req.body.imageURL,
-          quantity:1,
-         } 
-         //// pushing to cart items database
-         const addItems=await db 
-           .collection("cartItems")
-           .doc(`/${userId}/`)
-           .collection("items")
-           .doc(`/${productId}/`)
-           .set(data); 
-           return res.status(200).send({success:true,data:addItems}); 
-       }
-   }
-   catch(err){ 
-     return res.send({success:false,msg:`Error :${err} `}); 
-   }
- } ) 
-
-
- /// get all the cart items 
- router.get("/getCartItems/:user_id",async (req,res)=>{ 
-  const userId=req.params.user_id; 
-  (async ()=>{ 
-    try{ 
-       let query=db
-         .collection("cartItems")
-         .doc(`/${userId}/`)
-         .collection("items"); 
-
-         let response=[]; 
-
-         await query.get().then((querysnap)=>{ 
-            let docs=querysnap.docs; 
-            docs.map((doc)=>{ 
-              response.push({...doc.data() }); 
-            }); 
-            return response; 
-         }); 
-         return res.status(200).send({success:true,data:response});  
+          .update({ quantity });
+        return res.status(200).send({ success: true, data: updatedItem });
+      } else {
+        if (doc.data().quantity === 1) {
+          await db
+            .collection("cartItems")
+            .doc(`/${userId}/`)
+            .collection("items")
+            .doc(`/${productId}/`)
+            .delete()
+            .then((result) => {
+              return res.status(200).send({ success: true, data: result });
+            });
+        } else {
+          const quantity = doc.data().quantity - 1;
+          const updatedItem = await db
+            .collection("cartItems")
+            .doc(`/${userId}/`)
+            .collection("items")
+            .doc(`/${productId}/`)
+            .update({ quantity });
+          return res.status(200).send({ success: true, data: updatedItem });
+        }
+      }
     }
-    catch(err){ 
-      return res.send({success:false,msg:`Error : ${err}` }); 
+  } catch (err) {
+    return res.send({ success: false, msg: `Error : ${err}` });
+  }
+});
+
+/// get all the cart items
+router.get("/getCartItems/:user_id", async (req, res) => {
+  const userId = req.params.user_id;
+  (async () => {
+    try {
+      let query = db
+        .collection("cartItems")
+        .doc(`/${userId}/`)
+        .collection("items");
+
+      let response = [];
+
+      await query.get().then((querysnap) => {
+        let docs = querysnap.docs;
+        docs.map((doc) => {
+          response.push({ ...doc.data() });
+        });
+        return response;
+      });
+      return res.status(200).send({ success: true, data: response });
+    } catch (err) {
+      return res.send({ success: false, msg: `Error : ${err}` });
     }
-  })();  
- })
-module.exports=router; 
+  })();
+});
+module.exports = router;
