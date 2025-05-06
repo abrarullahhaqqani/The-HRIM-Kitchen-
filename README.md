@@ -21,33 +21,39 @@ Contributor 2 (Abr)
 Full Stack food delivery application using react.js
 This is the thumbnail ![Image alt](https://github.com/abrarullahhaqqani/The-HRIM-Kitchen-/blob/main/snap.png?raw=true)
 
-Contributor 3 (IAK) 
-Add redux dependencies to client and Install Redux dev tools chrome Extension 
+Contributor 3 (IAK)
+Add redux dependencies to client and Install Redux dev tools chrome Extension
+
 > > yarn add redux react-redux
 
-
 Contributor 4(SRR)
-> >For customizing and styling scrollbars in your Tailwind CSS project.
+
+> > For customizing and styling scrollbars in your Tailwind CSS project.
 
 "Note that all these commands are to be run on the client only."
+
 > Run: yarn add tailwind-scrollbar
 
 > Then, add the plugin in
 
 > tailwind.config.js.
 
->  For Material Tables which is required in this project from material-table.com Run these  commands
->  yarn add material-table
+> For Material Tables which is required in this project from material-table.com Run these commands
+> yarn add material-table
 
 > yarn add @material-ui/core
 
 > yarn add @material-ui/icons
 
->  These commands install Material Table, Material-UI components, and Material-UI icons for table styling and functionality in React.
-" Add this dependencies to client folder for some specialized UI options "
+> These commands install Material Table, Material-UI components, and Material-UI icons for table styling and functionality in React.
+> " Add this dependencies to client folder for some specialized UI options "
 
 Contributor 3 (IAK)
+
 > yarn add swiper
 
 > yarn add @coreui/react-chartjs
 
+Contributor 2 (Abr)
+
+> In order to install dependencies of stripe use command npm install stripe in the server/fuctions folder
