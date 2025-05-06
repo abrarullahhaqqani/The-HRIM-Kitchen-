@@ -184,19 +184,41 @@ router.get("/getCartItems/:user_id", async (req, res) => {
 });
 
 router.post("/create-checkout-session", async (req, res) => {
-  const session = await stripe.checkout.sessions.create({
-    line_items: [
-      {
-        price_data: {
-          currency: "usd",
-          product_data: {
-            name: "T-shirt",
+  // creating line items according to us
+  const line_items = req.body.data.cart.map((item) => {
+    return {
+      price_data: {
+        currency: "inr",
+        product_data: {
+          name: item.product_name,
+          images: [item.imageURL], //In order to learn more about line items go to stripe docs
+          metadata: {
+            id: item.productId,
           },
-          unit_amount: 2000,
         },
-        quantity: 1,
+        unit_amount: item.product_price * 100,
       },
-    ],
+      quantity: item.quantity,
+    };
+  });
+  const session = await stripe.checkout.sessions.create({
+    // payment_method_types: ["card"],
+    // shippind_address_collection: { allowed_countries: ["IN"] },
+    // shipping_options: [
+    //   {
+    //     shipping_rate_data: {
+    //       type: "fixed_amount",
+    //       fixed_amount: { amount: 0, currency: "inr" },
+    //       display_name: "free shipping",
+    //       delivery_estimate: {
+    //         minimum: { unit: "hour", value: 2 },
+    //         maximum: { unit: "hour", value: 4 },
+    //       },
+    //     },
+    //   },
+    // ],
+    line_items,
+
     mode: "payment",
     success_url: `${process.env.CLIENT_URL}/checkout-success`,
     cancel_url: `${process.env.CLIENT_URL}/`,

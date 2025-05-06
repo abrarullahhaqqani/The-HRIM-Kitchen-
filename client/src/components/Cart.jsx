@@ -8,10 +8,11 @@ import { setCartOff } from "../context/actions/displayCartAction";
 import { useDispatch, useSelector } from "react-redux";
 import { FcClearFilters } from "react-icons/fc";
 import { HiCurrencyRupee } from "react-icons/hi2";
-import { getAllCartItems } from "../api/index";
+import { baseURL, getAllCartItems } from "../api/index";
 import { setCartItems } from "../context/actions/cartAction";
 import { alertNULL, alertSuccess } from "../context/actions/AlertActions";
 import { increaseItemQuantity } from "../api";
+import axios from "axios";
 
 //problem here
 //import { alertSuccess, alertNULL } from
@@ -19,7 +20,7 @@ import { increaseItemQuantity } from "../api";
 const Cart = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
-
+  const user = useSelector((state) => state.user);
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
@@ -31,6 +32,22 @@ const Cart = () => {
       setTotal(tot);
     }
   }, [cart]);
+
+  const handleCheckOut = () => {
+    const data = {
+      user: user,
+      cart: cart,
+      total: total,
+    };
+    axios
+      .post(`${baseURL}/api/products/create-checkout-session`, { data })
+      .then((res) => {
+        if (res.data.url) {
+          window.location.href = res.data.url;
+        }
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <motion.div
@@ -73,6 +90,13 @@ const Cart = () => {
                   {total}
                 </p>
               </div>
+              <motion.button
+                {...buttonClick}
+                className="bg-orange-400 w-{70%} px-4 py-3 text-xl text-headingColor font-semibold hover:bg-orange-500 drop-shadow-md rounded-2xl"
+                onClick={handleCheckOut}
+              >
+                Check Out
+              </motion.button>
             </div>
           </>
         ) : (
