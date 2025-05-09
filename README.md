@@ -57,3 +57,15 @@ Contributor 3 (IAK)
 Contributor 2 (Abr)
 
 > In order to install dependencies of stripe use command npm install stripe in the server/fuctions folder
+
+> npm install stripe inside the server/functions folder
+
+> install stripe from "Getting started with stripe CLI" on browser
+
+> Add the path of the unzipped file to the env variables of your machine
+
+> check if the installations is successful using the command stripe --version in cmd
+
+> use command stripe login in your terminal
+
+> add secret key in .env file with variable name as "WEBHOOK_SECRET"

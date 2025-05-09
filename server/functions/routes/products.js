@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const admin = require("firebase-admin");
-const db = admin.firestore();
 const express = require("express");
+const db = admin.firestore();
+// const express = require("express");
 db.settings({ ignoreUndefinedProperties: true });
 const stripe = require("stripe")(process.env.STRIPE_KEY); //Supplying the key
 
@@ -202,21 +203,21 @@ router.post("/create-checkout-session", async (req, res) => {
     };
   });
   const session = await stripe.checkout.sessions.create({
-    // payment_method_types: ["card"],
-    // shippind_address_collection: { allowed_countries: ["IN"] },
-    // shipping_options: [
-    //   {
-    //     shipping_rate_data: {
-    //       type: "fixed_amount",
-    //       fixed_amount: { amount: 0, currency: "inr" },
-    //       display_name: "free shipping",
-    //       delivery_estimate: {
-    //         minimum: { unit: "hour", value: 2 },
-    //         maximum: { unit: "hour", value: 4 },
-    //       },
-    //     },
-    //   },
-    // ],
+    payment_method_types: ["card"],
+    shipping_address_collection: { allowed_countries: ["IN"] },
+    shipping_options: [
+      {
+        shipping_rate_data: {
+          type: "fixed_amount",
+          fixed_amount: { amount: 0, currency: "inr" },
+          display_name: "free shipping",
+          delivery_estimate: {
+            minimum: { unit: "hour", value: 2 },
+            maximum: { unit: "hour", value: 4 },
+          },
+        },
+      },
+    ],
     line_items,
 
     mode: "payment",
@@ -226,4 +227,37 @@ router.post("/create-checkout-session", async (req, res) => {
   res.send({ url: session.url });
 });
 
+let endpointSecret;
+// const endpointSecret = process.env.WEBHOOK_SECRET;
+router.post(
+  "/webhook",
+  express.raw({ type: "application/json" }),
+  (req, res) => {
+    const sig = req.headers["stripe-signature"];
+
+    let eventType;
+    let data;
+
+    if (endpointSecret) {
+      let event;
+      try {
+        event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
+      } catch (err) {
+        console.error("Webhook signature verification failed:", err.message);
+        return res.status(400).send(`Webhook Error: ${err.message}`);
+      }
+      data = event.data.object;
+      eventType = event.type;
+    } else {
+      data = req.body.data.object;
+      eventType = req.body.type;
+    }
+
+    if (eventType === "checkout.session.completed") {
+      console.log(data);
+    }
+    // Respond to Stripe
+    response.status(200).send();
+  }
+);
 module.exports = router;
