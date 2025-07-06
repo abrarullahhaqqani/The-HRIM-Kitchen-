@@ -55,7 +55,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "tailwind-scrollbar": "^4.0.1",
+    "tailwind-scrollbar": "^4.0.2",
     "tailwindcss": "3"
   }
 }

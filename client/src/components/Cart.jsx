@@ -52,7 +52,7 @@ const Cart = () => {
   return (
     <motion.div
       {...slideIn}
-      className="fixed z-50 top-0 right-0 w-300 md:w-500 bg-lightOverlay backdrop-blur-md shadown-md h-screen "
+      className="fixed z-50 top-0 right-0 w-300 md:w-500 bg-lightOverlay backdrop-blur-md shadow-md h-screen "
     >
       <div className="w-full items-center justify-between py-4 pb-12 px-3">
         <motion.i

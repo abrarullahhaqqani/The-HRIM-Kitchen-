@@ -1,15 +1,17 @@
 # The-HRIM-Kitchen-
-
 This project aims to make a full stack project on a food delivery app
 
 ## Project Setup
+
+Contributor 1(MMMS)
 
 **1**.Download [Node.js](https://nodejs.org/en).
 To know its version / To check for successful installation ,type in cmd
 either of the following
 
-> > node --version
-> > node -v
+> node --version
+
+> node -v
 
 **2**.Download yarn by typing in cmd
 npm install -g yarn
@@ -24,11 +26,11 @@ This is the thumbnail ![Image alt](https://github.com/abrarullahhaqqani/The-HRIM
 Contributor 3 (IAK)
 Add redux dependencies to client and Install Redux dev tools chrome Extension
 
-> > yarn add redux react-redux
+> yarn add redux react-redux
 
 Contributor 4(SRR)
 
-> > For customizing and styling scrollbars in your Tailwind CSS project.
+> For customizing and styling scrollbars in your Tailwind CSS project.
 
 "Note that all these commands are to be run on the client only."
 
@@ -56,7 +58,7 @@ Contributor 3 (IAK)
 
 Contributor 2 (Abr)
 
-> In order to install dependencies of stripe use command npm install stripe in the server/fuctions folder
+> In order to install dependencies of stripe use command npm install stripe in the server/functions folder
 
 > npm install stripe inside the server/functions folder
 
